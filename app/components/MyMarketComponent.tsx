@@ -4,7 +4,7 @@ import { PinItem } from '../model/pinItem';
 import { useEffect, useMemo, useRef } from 'react';
 import L from 'leaflet';
 import { usePinStore } from '../store/usePinStore';
-
+import { formatCoordinate } from '../utils/utils';
 
 
 
@@ -53,12 +53,12 @@ export default function MyMarkerComponent({ index, pin }: { index: number; pin: 
         <Marker ref={markerRef} key={pin.id} position={[pin.lat, pin.lng]} icon={myMarkerIcon}
             draggable={true} eventHandlers={eventHandlers}
         >
-            <Popup closeButton={false} autoClose={false} closeOnClick={false} >
+            <Popup closeButton={true} autoClose={false} closeOnClick={false} >
                 <div className="text-sm">
                     <p className="font-bold mb-1">Pin #{index + 1}</p>
                     <p className="text-gray-600 mb-2">{pin.address}</p>
                     <p className="text-xs text-gray-400">
-                        {pin.lat.toFixed(4)}, {pin.lng.toFixed(4)}
+                        {formatCoordinate(pin.lat, 'lat')} {formatCoordinate(pin.lng, 'lng')}
                     </p>
                 </div>
             </Popup>

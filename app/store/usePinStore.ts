@@ -1,3 +1,5 @@
+'use client'
+
 import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
 import { PinItem } from '../model/pinItem'; // 假设你已经在这个文件里定义了 PinItem 接口
@@ -14,7 +16,7 @@ interface PinState {
 
 async function queryAddress(lat: number, lng: number): Promise<string> {
     try {
-        // 🌟 修改点：请求你自己的 API 路径
+
         const response = await fetch(`/api/reverse?lat=${lat}&lon=${lng}`);
 
         if (!response.ok) throw new Error('Network response was not ok');

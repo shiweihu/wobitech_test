@@ -2,6 +2,7 @@
 'use client'
 import { MapPin, Trash2 } from 'lucide-react';
 import { PinItem } from '../model/pinItem';
+import { formatCoordinate } from '../utils/utils';
 
 
 export function PinItemComponent({ index, pinItem, onDelete, onInteract }: { index: number, pinItem: PinItem, onInteract: (id: string) => void, onDelete: (id: string) => void }) {
@@ -13,6 +14,8 @@ export function PinItemComponent({ index, pinItem, onDelete, onInteract }: { ind
     const handleInteractClick = (id: string) => {
         onInteract(id);
     };
+
+
 
     return (
         <div className="flex items-center justify-between p-4 border-b border-gray-50 hover:bg-gray-50 transition-colors cursor-pointer"
@@ -27,7 +30,7 @@ export function PinItemComponent({ index, pinItem, onDelete, onInteract }: { ind
                     <span className="font-semibold text-gray-800 text-sm">Pin #{index}</span>
                     <span className="text-[11px] text-gray-400 flex items-center gap-1 mt-0.5">
                         <MapPin className="w-3 h-3" />
-                        {pinItem.lat}"S {pinItem.lng}"E
+                        {formatCoordinate(pinItem.lat, 'lat')} {formatCoordinate(pinItem.lng, 'lng')}
                     </span>
                 </div>
             </div>
