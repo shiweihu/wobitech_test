@@ -14,26 +14,43 @@ interface PinState {
 
 async function queryAddress(lat: number, lng: number): Promise<string> {
     try {
-        // 1. 定义基础 URL
-        const url = new URL('https://nominatim.openstreetmap.org/reverse');
+        // 🌟 修改点：请求你自己的 API 路径
+        const response = await fetch(`/api/reverse?lat=${lat}&lon=${lng}`);
 
-        // 2. 使用 URLSearchParams 传入参数对象
-        const params = {
-            format: 'json',
-            lat: String(lat), // 注意：参数值需要转换成字符串
-            lon: String(lng),
-            'accept-language': 'en',
-        };
+        if (!response.ok) throw new Error('Network response was not ok');
 
-        // 3. 将参数附加到 url 上
-        url.search = new URLSearchParams(params).toString();
-        const response = await fetch(url);
         const data = await response.json();
+
+        // 注意：根据返回的数据结构取值，通常还是 display_name
         return data.display_name || 'Unknown Location';
     } catch (error) {
-        return "Location details unavailable"
+        console.error("Geocoding error:", error);
+        return "Location details unavailable";
     }
 }
+
+// async function queryAddress(lat: number, lng: number): Promise<string> {
+//     try {
+//         // 1. 定义基础 URL
+//         const url = new URL('https://nominatim.openstreetmap.org/reverse');
+
+//         // 2. 使用 URLSearchParams 传入参数对象
+//         const params = {
+//             format: 'json',
+//             lat: String(lat), // 注意：参数值需要转换成字符串
+//             lon: String(lng),
+//             'accept-language': 'en',
+//         };
+
+//         // 3. 将参数附加到 url 上
+//         url.search = new URLSearchParams(params).toString();
+//         const response = await fetch(url);
+//         const data = await response.json();
+//         return data.display_name || 'Unknown Location';
+//     } catch (error) {
+//         return "Location details unavailable"
+//     }
+// }
 
 export const usePinStore = create<PinState>()(
     persist(
