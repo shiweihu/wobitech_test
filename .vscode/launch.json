@@ -1,0 +1,27 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Next.js: dev",
+      "type": "node-terminal",
+      "request": "launch",
+      "command": "npm run dev"
+    },
+    {
+      "type": "chrome",
+      "request": "launch",
+      "name": "Next.js: client",
+      "url": "http://localhost:3000",
+      "webRoot": "${workspaceFolder}"
+    }
+  ],
+  "compounds": [
+    {
+      "name": "Next.js: fullstack",
+      "configurations": [
+        "Next.js: dev",
+        "Next.js: client"
+      ]
+    }
+  ]
+}
