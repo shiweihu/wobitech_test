@@ -7,6 +7,9 @@ A modern, responsive web application built with **Next.js 15** that allows users
 ## 🚀 Live Demo
 **URL**: [https://wobitechtest.vercel.app/](https://wobitechtest.vercel.app/)
 
+
+[![项目演示封面](path/to/cover.jpg)](https://wobitechtest.vercel.app/)
+
 ## 📌 Project Overview
 The goal of this project is to provide a seamless interface for geographic data management. Users can place markers, drag them to adjust positions, and see human-readable addresses instantly.
 
